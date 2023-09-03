@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib  prefix = "sec" uri = "http://www.springframework.org/security/tags"%>
 <!DOCTYPE html><!--  This site was created in Webflow. https://www.webflow.com  -->
 <!--  Last Published: Sun Sep 03 2023 14:48:02 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="64f3ecb9ab86dd89fd25a270" data-wf-site="64e5ed3359b16400aec286b0">
@@ -58,8 +59,18 @@
               <a href="../index.html" class="nav-link w-nav-link">消息新聞</a>
               <div><img src="../images/螢幕擷取畫面-2023-09-02-1.jpg" loading="lazy" width="68" sizes="(max-width: 767px) 100vw, (max-width: 991px) 56.35416793823242px, (max-width: 1439px) 6vw, 67.98611450195312px" alt="" srcset="../images/螢幕擷取畫面-2023-09-02-1-p-500.jpg 500w, ../images/螢幕擷取畫面-2023-09-02-1-p-800.jpg 800w, ../images/螢幕擷取畫面-2023-09-02-1.jpg 967w"></div>
               <a href="../member-profile/member-profile-ame-library-friend-list.html" class="nav-link w-nav-link">會員中心</a>
-              <a href="../index.html" class="nav-link w-nav-link">註冊</a>
-              <a href="../index.html" class="nav-link w-nav-link">登入</a>
+			  <sec:authorize access="isAuthenticated()">
+				    <span> <sec:authentication property="name"/> 你好!</span>
+				</sec:authorize>
+				<sec:authorize access="!isAuthenticated()">
+				    <a href="/register">註冊</a>
+			  </sec:authorize>
+			  <sec:authorize access="isAuthenticated()">
+			    <a href="<c:url value='/logout'/>" aria-current="page" class="nav-link w-nav-link">登出</a>
+			</sec:authorize>
+			<sec:authorize access="!isAuthenticated()">
+			    <a href="<c:url value='/login'/>" aria-current="page" class="nav-link w-nav-link w--current">登入</a>
+			</sec:authorize>
             </nav>
             <div class="menu-button w-nav-button">
               <div class="icon-2 w-icon-nav-menu"></div>

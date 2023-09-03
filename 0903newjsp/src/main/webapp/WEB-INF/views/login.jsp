@@ -13,27 +13,25 @@
   }
 .button-container {
     display: flex; 
-    align-items: flex-start;  /* 改為flex-start確保按鈕靠上對齊 */
+    align-items: flex-start;  
     margin-top: 15px;
 }
 
 .f-button-neutral-4 {
     margin-right: 10px;
-    height: auto;   /* 自動調整高度 */
+    height: auto;   
     box-sizing: border-box;
 }
 
 .google-login-btn img {
-    height: 50px;  /* 調整為您需要的大小 */
+    height: 50px; 
     width: auto;
 }
 
 .google-login-btn {
-    margin-top: -30px;  /* 使Google按鈕高出20px */
+    margin-top: -30px;  
 }
-
 	</style>
-
   <title>loginpage</title>
   <meta content="Free Webflow ecommerce template for your business. Enjoy colorful design, add your products, mix components and build your own online shop!" name="description">
   <meta content="loginpage" property="og:title">
