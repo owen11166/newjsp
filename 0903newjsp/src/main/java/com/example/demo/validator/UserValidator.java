@@ -30,7 +30,7 @@ public class UserValidator implements Validator {
 			}
 		}
 		if (!errors.hasFieldErrors("password")) {
-			if (user.getPassword() != null && user.getPassword().length() <= 6) {
+			if (user.getPassword() != null && user.getPassword().length() <= 5) {
 				errors.rejectValue("password", "user.password.length", "密碼長度至少6個位元");
 			}
 		}

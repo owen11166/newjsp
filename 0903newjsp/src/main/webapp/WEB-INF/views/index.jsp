@@ -6,7 +6,7 @@
 <html data-wf-page="64f3ecb9ab86dd89fd25a1ca" data-wf-site="64e5ed3359b16400aec286b0">
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>首頁</title>
   <meta content="Free Webflow ecommerce template for your business. Enjoy colorful design, add your products, mix components and build your own online shop!" name="description">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="Webflow" name="generator">
@@ -41,15 +41,15 @@
                   <div>遊戲類別</div>
                 </div>
                 <nav class="w-dropdown-list">
-                  <a href="/" aria-current="page" class="dropdown-link w-dropdown-link w--current">射擊遊戲</a>
-                  <a href="/" aria-current="page" class="dropdown-link-2 w-dropdown-link w--current">動作冒險</a>
-                  <a href="/" aria-current="page" class="dropdown-link-3 w-dropdown-link w--current">角色扮演</a>
-                  <a href="/" aria-current="page" class="dropdown-link-4 w-dropdown-link w--current">即時戰略</a>
-                  <a href="/" aria-current="page" class="dropdown-link-5 w-dropdown-link w--current">卡牌策略</a>
+                  <a href="../index.html" class="dropdown-link w-dropdown-link">射擊遊戲</a>
+                  <a href="../index.html" class="dropdown-link-2 w-dropdown-link">動作冒險</a>
+                  <a href="../index.html" class="dropdown-link-3 w-dropdown-link">角色扮演</a>
+                  <a href="../index.html" class="dropdown-link-4 w-dropdown-link">即時戰略</a>
+                  <a href="../index.html" class="dropdown-link-5 w-dropdown-link">卡牌策略</a>
                 </nav>
               </div>
-              <a href="/" aria-current="page" class="nav-link w-nav-link w--current">社區</a>
-              <a href="/" aria-current="page" class="nav-link w-nav-link w--current">消息新聞</a>
+              <a href="/index.html" aria-current="page" class="nav-link w-nav-link w--current">社區</a>
+              <a href="/index.html" aria-current="page" class="nav-link w-nav-link w--current">消息新聞</a>
               <div><img src="images/螢幕擷取畫面-2023-09-02-1.jpg" loading="lazy" width="68" sizes="(max-width: 991px) 100vw, (max-width: 1439px) 6vw, 68px" alt="" srcset="images/螢幕擷取畫面-2023-09-02-1-p-500.jpg 500w, images/螢幕擷取畫面-2023-09-02-1-p-800.jpg 800w, images/螢幕擷取畫面-2023-09-02-1.jpg 967w"></div>
               <a href="/member-profile/member-profile-ame-library-friend-list" class="nav-link w-nav-link">會員中心</a>
 			  <sec:authorize access="isAuthenticated()">
