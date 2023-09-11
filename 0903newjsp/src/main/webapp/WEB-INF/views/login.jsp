@@ -220,7 +220,7 @@
         <div class="div-block-80">
           <div class="text-block-19">尚未擁有5TEAM帳號嗎?</div>
           <a href="<c:url value='/register'/>"  aria-current="page" class="button-82 w-button">點此註冊</a>
-          <a href="<c:url value='/forgotPassword'/>"  aria-current="page" class="button-82 w-button">忘記密碼</a>
+          <a href="<c:url value='/resetPassword'/>"  aria-current="page" class="button-82 w-button">忘記密碼</a>
         </div>
       </div>
     </div>
