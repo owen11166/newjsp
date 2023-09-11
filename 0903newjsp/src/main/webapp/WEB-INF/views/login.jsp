@@ -196,7 +196,7 @@
 			        </div>
 
 			    </div>
-			    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> <!-- Add CSRF token for security -->
+			    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
 			    			        <% if (request.getParameter("error") != null) { %>
     					<p class="error-message">使用者名稱或密碼錯誤</p>
 					<% } %>
@@ -220,6 +220,7 @@
         <div class="div-block-80">
           <div class="text-block-19">尚未擁有5TEAM帳號嗎?</div>
           <a href="<c:url value='/register'/>"  aria-current="page" class="button-82 w-button">點此註冊</a>
+          <a href="<c:url value='/forgotPassword'/>"  aria-current="page" class="button-82 w-button">忘記密碼</a>
         </div>
       </div>
     </div>

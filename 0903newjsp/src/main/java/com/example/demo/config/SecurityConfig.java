@@ -49,7 +49,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
         .authorizeHttpRequests(configurer -> configurer
-            .antMatchers("/save", "/", "/register", "/css/**", "/js/**", "/images/**", "/registersucessful", "/logout").permitAll()
+            .antMatchers("/save", "/", "/register", "/css/**", "/js/**", "/images/**", "/registersucessful", "/logout","/forgotPassword").permitAll()
             .antMatchers("/back/**").hasRole("ADMIN")
             .anyRequest().hasRole("USER"))
         .formLogin(form -> form

@@ -12,11 +12,13 @@ public interface UserService {
 	void save(User theUser);
 
 	void deleteById(int theId);
-	
+
 	User findByUserName(String username);
 
-	
 	User findByUserId(String username);
-	
+
 	void detach(User user);
+
+	String resetAndEncryptPassword(User user);
+
 }

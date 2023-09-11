@@ -1,11 +1,11 @@
 package com.example.demo.service;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +15,7 @@ import com.example.demo.entity.Role;
 import com.example.demo.entity.User;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;
+import java.util.Base64;
 
 @Service
 @Transactional
@@ -92,5 +93,18 @@ public class UserServiceimpl implements UserService {
 
 		customRepository.detach(user);
 	}
+	public String resetAndEncryptPassword(User user) {
+	    String randomPassword = generateRandomPassword();
+	    String encryptedPassword = passwordEncoder.encode(randomPassword);
+	    user.setPassword(encryptedPassword);
+	    userrepository.save(user);
+	    return randomPassword; 
+	}
 
+	private String generateRandomPassword() {
+	    SecureRandom random = new SecureRandom();
+	    byte[] bytes = new byte[8]; 
+	    random.nextBytes(bytes);
+	    return Base64.getEncoder().encodeToString(bytes).substring(0, 8);
+	}
 }

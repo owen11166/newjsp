@@ -54,6 +54,26 @@ public class HomeController {
 	public String rs(Model model) {
 		return "registersucessful";
 	}
+	@GetMapping("/forgotPassword")
+	public String showForgotPasswordForm(Model model) {
+	    model.addAttribute("user", new User());
+	    return "forgotPassword";
+	}
+	@PostMapping("/process-forgot-password")
+	public String processForgotPassword(@ModelAttribute("user") User user, BindingResult bindingResult, Model model, RedirectAttributes ra) {
+	    User existingUser = userService.findByUserName(user.getUsername());
+	    if (existingUser == null || !existingUser.getEmail().equals(user.getEmail())) {
+	        bindingResult.rejectValue("username", "user.not.found", "不存在的使用者名稱或電子郵件");
+	        return "forgot-password";
+	    }
+
+	    String randomPassword = userService.resetAndEncryptPassword(existingUser);
+	    emailService.sendNewPassword(existingUser.getEmail(), randomPassword);
+	    ra.addFlashAttribute("message", "新密碼已發送到您的電子郵件地址");
+	    return "redirect:/login";
+	}
+
+
 
 	@PostMapping("/save")
 	public String saveEmployee(@ModelAttribute("user")  User user, BindingResult bindingResult, Model model,RedirectAttributes ra) {
@@ -68,8 +88,8 @@ public class HomeController {
 			return "register";
 		}
 		userService.save(user);	
-		//需開啟google2階段認證 等到大家都做好在開啟
-		//emailService.sendRegistrationConfirmation(user.getEmail(), user.getUsername());
+		
+		emailService.sendRegistrationConfirmation(user.getEmail(), user.getUsername());
 	    return "redirect:/registersucessful";
 	}
 
