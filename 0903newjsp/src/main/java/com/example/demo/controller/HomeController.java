@@ -58,20 +58,25 @@ public class HomeController {
 	public String resetPassword() {
 		return "resetPassword";
 	}
-	@PostMapping("/resetPassword")
-	public String handleResetPassword(@RequestParam("email") String email, Model model) {
-		try {
-			userService.resetPassword(email);
-		} catch (EmailNotFoundException e) {
-			model.addAttribute("error", e.getMessage());
-			return "resetPassword";
-		} catch (MessagingException e) {
-			model.addAttribute("error", "There was an error sending the email");
-			return "forgot-password";
-		}
-		return "redirect:/loginForm?resetSuccess";
-	}
-	
+    @GetMapping("/forgotPassword")
+    public String forgotPassword() {
+        return "forgotPassword";
+    }
+
+    @PostMapping("/forgotPassword")
+    public String handleForgotPassword(@RequestParam("email") String email, Model model) {
+        try {
+            userService.resetPassword(email);
+        } catch (EmailNotFoundException e) {
+            model.addAttribute("error", e.getMessage());
+            return "forgotPassword";
+        } catch (MessagingException e) {
+            model.addAttribute("error", "There was an error sending the email");
+            return "forgotPassword";
+        }
+
+        return "redirect:/login?forgotSuccess";
+    }
 	
 
 	@PostMapping("/save")

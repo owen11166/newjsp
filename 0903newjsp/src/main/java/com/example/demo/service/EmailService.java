@@ -24,16 +24,16 @@ public class EmailService {
 
 		mailSender.send(message);
 	}
-	public void sendNewPasswordEmail(String firstName, String newPassword, String email) throws MessagingException {
-		MimeMessage message = mailSender.createMimeMessage();
-		MimeMessageHelper helper = new MimeMessageHelper(message);
-		
-		helper.setTo(email);
-		helper.setSubject("New Password");
-		helper.setText("Hi " + firstName + ",\n\nYour new password is: " + newPassword + "\n\nThe Support Team");
-		
-		mailSender.send(message);
-	}
+    public void sendNewPasswordEmail(String firstName, String newPassword, String email) throws MessagingException {
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message);
+
+        helper.setTo(email);
+        helper.setSubject("New Password");
+        helper.setText("Hi " + firstName + ",\n\nYour new password is: " + newPassword + "\n\nThe Support Team");
+
+        mailSender.send(message);
+    }
 
 
 }

@@ -4,10 +4,10 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 import javax.mail.MessagingException;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -96,30 +96,19 @@ public class UserServiceimpl implements UserService {
 
 		customRepository.detach(user);
 	}
-	public void resetPassword(String email) throws EmailNotFoundException, MessagingException {
-		User user = userrepository.findByEmail(email);
-		if (user == null) {
-			throw new EmailNotFoundException("No account found with email: " + email);
-		}
-		
-		String newPassword = generateRandomPassword();
-		String encryptedPassword = passwordEncoder.encode(newPassword);
-		
-		emailService.sendNewPasswordEmail(user.getUsername(), newPassword, user.getEmail());
-		
-		user.setPassword(encryptedPassword);
-		userrepository.save(user);
-	}
+    public String resetPassword(String email) throws EmailNotFoundException, MessagingException {
+        User user = userrepository.findByEmail(email);
+        if (user == null) {
+            throw new EmailNotFoundException("找不到此電子郵件" + email);
+        }
 
-	
-	private String generateRandomPassword() {
-		String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-		StringBuilder password = new StringBuilder();
-		Random rnd = new Random();
-		while (password.length() < 6) {
-			int index = (int) (rnd.nextFloat() * characters.length());
-			password.append(characters.charAt(index));
-		}
-		return password.toString();
-	}
+        String newPassword = RandomStringUtils.randomAlphanumeric(8);
+        String encryptedPassword = passwordEncoder.encode(newPassword);
+        user.setPassword(encryptedPassword);
+        userrepository.save(user);
+
+        emailService.sendNewPasswordEmail(user.getUsername(), newPassword, email);
+
+        return newPassword;
+    }
 }

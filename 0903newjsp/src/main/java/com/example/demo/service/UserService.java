@@ -20,9 +20,8 @@ public interface UserService {
 	User findByUserId(String username);
 
 	void detach(User user);
-
-	void resetPassword(String email) throws EmailNotFoundException, MessagingException;
-
+	
+	 String resetPassword(String email) throws EmailNotFoundException, MessagingException;
 
 
 
