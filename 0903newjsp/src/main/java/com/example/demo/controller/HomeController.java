@@ -59,12 +59,13 @@ public class HomeController {
 	    model.addAttribute("user", new User());
 	    return "forgotPassword";
 	}
-	@PostMapping("/process-forgot-password")
+	@PostMapping("/fp")
 	public String processForgotPassword(@ModelAttribute("user") User user, BindingResult bindingResult, Model model, RedirectAttributes ra) {
 	    User existingUser = userService.findByUserName(user.getUsername());
 	    if (existingUser == null || !existingUser.getEmail().equals(user.getEmail())) {
+	    	model.addAttribute("errorMessage", "不存在的使用者名稱或電子郵件");
 	        bindingResult.rejectValue("username", "user.not.found", "不存在的使用者名稱或電子郵件");
-	        return "forgot-password";
+	        return "forgotPassword";
 	    }
 
 	    String randomPassword = userService.resetAndEncryptPassword(existingUser);
